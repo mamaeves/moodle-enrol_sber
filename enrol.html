@@ -1,0 +1,45 @@
+<div align="center">
+
+<p><?php print_string("paymentrequired") ?></p>
+<p><b><?php echo $instancename; ?></b></p>
+<p><b><?php echo get_string("cost").": {$instance->currency} {$localisedcost}"; ?></b></p>
+<p><img alt="<?php print_string('sberaccepted', 'enrol_sber') ?>" src="https://www.sber.com/en_US/i/logo/sber_mark_60x38.gif" /></p>
+<p><?php print_string("paymentinstant") ?></p>
+<?php
+	$sendorderurl=$CFG->wwwroot.'/enrol/sber/sendorder.php';
+?>
+<form action="<?php echo $sendorderurl ?>" method="post">
+
+<input type="hidden" name="cmd" value="_xclick" />
+<input type="hidden" name="charset" value="utf-8" />
+<input type="hidden" name="item_name" value="<?php p($coursefullname) ?>" />
+<input type="hidden" name="item_number" value="<?php p($courseshortname) ?>" />
+<input type="hidden" name="quantity" value="1" />
+
+<input type="hidden" name="instanceid" value="<?php p($instanceid) ?>" />
+
+<input type="hidden" name="currency_code" value="<?php p($instance->currency) ?>" />
+<input type="hidden" name="amount" value="<?php p($cost*100) ?>" />
+
+<input type="hidden" name="for_auction" value="false" />
+<input type="hidden" name="no_note" value="1" />
+<input type="hidden" name="no_shipping" value="1" />
+<input type="hidden" name="notify_url" value="<?php echo "$CFG->wwwroot/enrol/sber/ipn.php"?>" />
+<input type="hidden" name="return" value="<?php echo "$CFG->wwwroot/enrol/sber/return.php?id=$course->id" ?>" />
+<input type="hidden" name="cancel_return" value="<?php echo $CFG->wwwroot ?>" />
+
+<input type="hidden" name="first_name" value="<?php p($userfirstname) ?>" />
+<input type="hidden" name="last_name" value="<?php p($userlastname) ?>" />
+<input type="hidden" name="address" value="<?php p($useraddress) ?>" />
+<input type="hidden" name="city" value="<?php p($usercity) ?>" />
+<input type="hidden" name="email" value="<?php p($USER->email) ?>" />
+<input type="hidden" name="country" value="<?php p($USER->country) ?>" />
+
+<input type="hidden" name="orderNumber" value="<?php p($ordernumber) ?>" />
+<input type="hidden" name="returnUrl" value="<?php p($returnUrl) ?>" />
+
+<input type="submit" value="<?php print_string("sendpaymentbutton", "enrol_sber") ?>" />
+
+</form>
+
+</div>
