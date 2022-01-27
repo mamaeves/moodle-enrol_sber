@@ -18,7 +18,7 @@
  * sber utility script
  *
  * @package    enrol_sber
- * @copyright  2022 Eugene Mamaev 
+ * @copyright  2022 Eugene Mamaev
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -27,7 +27,7 @@ require_once("$CFG->dirroot/enrol/sber/lib.php");
 
 $id = required_param('id', PARAM_INT);
 
-if (!$course = $DB->get_record("course", array("id"=>$id))) {
+if (!$course = $DB->get_record("course", array("id" => $id))) {
     redirect($CFG->wwwroot);
 }
 
@@ -45,10 +45,10 @@ if (!empty($SESSION->wantsurl)) {
 
 $fullname = format_string($course->fullname, true, array('context' => $context));
 
-if (is_enrolled($context, NULL, '', true)) { 
+if (is_enrolled($context, null, '', true)) {
     redirect($destination, get_string('paymentthanks', '', $fullname));
 
-} else {   /// Somehow they aren't enrolled yet!  :-(
+} else {   // Somehow they aren't enrolled yet!  :-(
     $PAGE->set_url($destination);
     echo $OUTPUT->header();
     $a = new stdClass();

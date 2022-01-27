@@ -18,7 +18,7 @@
  * Strings for component 'enrol_sber', language 'en'.
  *
  * @package    enrol_sber
- * @copyright  2022 Eugene Mamaev  
+ * @copyright  2022 Eugene Mamaev
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 

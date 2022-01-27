@@ -29,33 +29,33 @@ function xmldb_enrol_sber_upgrade($oldversion) {
     global $DB;
 
     $dbman = $DB->get_manager();
-    
+
     if ($oldversion < 2022011502) {
-        
+
         // Define field orderid to be added to enrol_sber.
         $table = new xmldb_table('enrol_sber');
         $field = new xmldb_field('orderid', XMLDB_TYPE_CHAR, '36', null, null, null, null, 'timeupdated');
-        
+
         // Conditionally launch add field orderid.
         if (!$dbman->field_exists($table, $field)) {
             $dbman->add_field($table, $field);
         }
-        
+
         // Sber savepoint reached.
         upgrade_plugin_savepoint(true, 2022011502, 'enrol', 'sber');
     }
-    
+
     if ($oldversion < 2022011503) {
-        
+
         // Define field ordernumber to be added to enrol_sber.
         $table = new xmldb_table('enrol_sber');
         $field = new xmldb_field('ordernumber', XMLDB_TYPE_CHAR, '36', null, null, null, null, 'orderid');
-        
+
         // Conditionally launch add field ordernumber.
         if (!$dbman->field_exists($table, $field)) {
             $dbman->add_field($table, $field);
         }
-        
+
         // Sber savepoint reached.
         upgrade_plugin_savepoint(true, 2022011503, 'enrol', 'sber');
     }

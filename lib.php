@@ -34,8 +34,7 @@ defined('MOODLE_INTERNAL') || die();
 class enrol_sber_plugin extends enrol_plugin {
 
     public function get_currencies() {
-        
-        // 3-character ISO-4217: https://cms.sber.com/us/cgi-bin/?cmd=_render-content&content_ID=developer/e_howto_api_currency_codes
+
         $codes = array(
             'AUD', 'BRL', 'CAD', 'CHF', 'CZK', 'DKK', 'EUR', 'GBP', 'HKD', 'HUF', 'ILS', 'INR', 'JPY',
             'MXN', 'MYR', 'NOK', 'NZD', 'PHP', 'PLN', 'RUB', 'SEK', 'SGD', 'THB', 'TRY', 'TWD', 'USD');
@@ -78,17 +77,17 @@ class enrol_sber_plugin extends enrol_plugin {
     }
 
     public function roles_protected() {
-        // users with role assign cap may tweak the roles later
+        // Users with role assign cap may tweak the roles later
         return false;
     }
 
     public function allow_unenrol(stdClass $instance) {
-        // users with unenrol cap may unenrol other users manually - requires enrol/sber:unenrol
+        // Users with unenrol cap may unenrol other users manually - requires enrol/sber:unenrol
         return true;
     }
 
     public function allow_manage(stdClass $instance) {
-        // users with manage cap may tweak period and status - requires enrol/sber:manage
+        // Users with manage cap may tweak period and status - requires enrol/sber:manage
         return true;
     }
 
@@ -108,7 +107,7 @@ class enrol_sber_plugin extends enrol_plugin {
             return false;
         }
 
-        // multiple instances supported - different cost for different roles
+        // Multiple instances supported - different cost for different roles
         return true;
     }
 
@@ -154,12 +153,12 @@ class enrol_sber_plugin extends enrol_plugin {
      * @param stdClass $instance
      * @return string html text, usually a form in a text box
      */
-    function enrol_page_hook(stdClass $instance) {
+    public function enrol_page_hook(stdClass $instance) {
         global $CFG, $USER, $OUTPUT, $PAGE, $DB;
 
         ob_start();
 
-        if ($DB->record_exists('user_enrolments', array('userid'=>$USER->id, 'enrolid'=>$instance->id))) {
+        if ($DB->record_exists('user_enrolments', array('userid' => $USER->id, 'enrolid' => $instance->id))) {
             return ob_get_clean();
         }
 
@@ -171,7 +170,7 @@ class enrol_sber_plugin extends enrol_plugin {
             return ob_get_clean();
         }
 
-        $course = $DB->get_record('course', array('id'=>$instance->courseid));
+        $course = $DB->get_record('course', array('id' => $instance->courseid));
         $context = context_course::instance($course->id);
 
         $shortname = format_string($course->shortname, true, array('context' => $context));
@@ -193,25 +192,24 @@ class enrol_sber_plugin extends enrol_plugin {
             $cost = $instance->cost;
         }
 
-        if (abs($cost) < 0.01) { // no cost, other enrolment methods (instances) should be used
+        if (abs($cost) < 0.01) { // No cost, other enrolment methods (instances) should be used
             echo '<p>'.get_string('nocost', 'enrol_sber').'</p>';
         } else {
 
             // Calculate localised and "." cost, make sure we send sber the same value,
-            //$cost=$cost*10;
-            //$localisedcost = format_float($cost, 2, true);
+            // $cost=$cost*10;
+            // $localisedcost = format_float($cost, 2, true);
             $localisedcost = $cost;
-            //$cost = format_float($cost, 2, false);
 
-            if (isguestuser()) { // force login only for guest user, not real users with guest role
+            if (isguestuser()) { // Force login only for guest user, not real users with guest role
                 $wwwroot = $CFG->wwwroot;
                 echo '<div class="mdl-align"><p>'.get_string('paymentrequired').'</p>';
                 echo '<p><b>'.get_string('cost').": $instance->currency $localisedcost".'</b></p>';
                 echo '<p><a href="'.$wwwroot.'/login/">'.get_string('loginsite').'</a></p>';
                 echo '</div>';
             } else {
-                //Sanitise some fields before building the sber form
-                $coursefullname  = format_string($course->fullname, true, array('context'=>$context));
+                // Sanitise some fields before building the sber form
+                $coursefullname  = format_string($course->fullname, true, array('context' => $context));
                 $courseshortname = $shortname;
                 $userfullname    = fullname($USER);
                 $userfirstname   = $USER->firstname;
@@ -220,14 +218,14 @@ class enrol_sber_plugin extends enrol_plugin {
                 $usercity        = $USER->city;
                 $instancename    = $this->get_instance_name($instance);
                 $instanceid      = $instance->id;
-                
+
                 $username        = get_config('enrol_sber', 'username');
                 $password        = get_config('enrol_sber', 'password');
-                
+
                 $ordernumber     = 'C'.$course->id.'U'.$USER->id.'T'.time();
 
                 $returnUrl       = $CFG->wwwroot.'/enrol/sber/ordersuccess.php';
-                
+
                 include($CFG->dirroot.'/enrol/sber/enrol.html');
             }
 
@@ -399,7 +397,7 @@ class enrol_sber_plugin extends enrol_plugin {
         return $errors;
     }
 
-    
+
     /**
      * Is it possible to delete enrol instance via standard UI?
      *

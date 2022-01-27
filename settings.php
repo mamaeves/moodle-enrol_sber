@@ -27,15 +27,22 @@ defined('MOODLE_INTERNAL') || die();
 
 if ($ADMIN->fulltree) {
 
-    //--- settings ------------------------------------------------------------------------------------------
+    // Settings ------------------------------------------------------------------------------------------
     $settings->add(new admin_setting_heading('enrol_sber_settings', '', get_string('pluginname_desc', 'enrol_sber')));
-    
+
     $settings->add(new admin_setting_configtext('enrol_sber/username', get_string('username', 'enrol_sber'), '', '', PARAM_ALPHANUMEXT, 24));
     $settings->add(new admin_setting_configtext('enrol_sber/password', get_string('password', 'enrol_sber'), '', '', PARAM_ALPHANUMEXT, 24));
-    
-    $settings->add(new admin_setting_configtext('enrol_sber/registerurl', get_string('registerurl', 'enrol_sber'), '', 'https://3dsec.sberbank.ru/payment/rest/register.do', PARAM_URL, 24));
-    
-    
+
+    $settings->add(new admin_setting_configtext(
+                'enrol_sber/registerurl',
+                get_string('registerurl', 'enrol_sber'),
+                '',
+                'https://3dsec.sberbank.ru/payment/rest/register.do',
+                PARAM_URL,
+                24)
+            );
+
+
     $settings->add(new admin_setting_configcheckbox('enrol_sber/mailstudents', get_string('mailstudents', 'enrol_sber'), '', 0));
 
     $settings->add(new admin_setting_configcheckbox('enrol_sber/mailteachers', get_string('mailteachers', 'enrol_sber'), '', 0));
@@ -43,15 +50,21 @@ if ($ADMIN->fulltree) {
     $settings->add(new admin_setting_configcheckbox('enrol_sber/mailadmins', get_string('mailadmins', 'enrol_sber'), '', 0));
 
     // Note: let's reuse the ext sync constants and strings here, internally it is very similar,
-    //       it describes what should happen when users are not supposed to be enrolled any more.
+    // it describes what should happen when users are not supposed to be enrolled any more.
     $options = array(
         ENROL_EXT_REMOVED_KEEP           => get_string('extremovedkeep', 'enrol'),
         ENROL_EXT_REMOVED_SUSPENDNOROLES => get_string('extremovedsuspendnoroles', 'enrol'),
         ENROL_EXT_REMOVED_UNENROL        => get_string('extremovedunenrol', 'enrol'),
     );
-    $settings->add(new admin_setting_configselect('enrol_sber/expiredaction', get_string('expiredaction', 'enrol_sber'), get_string('expiredaction_help', 'enrol_sber'), ENROL_EXT_REMOVED_SUSPENDNOROLES, $options));
+    $settings->add(new admin_setting_configselect(
+                            'enrol_sber/expiredaction',
+                            get_string('expiredaction', 'enrol_sber'),
+                            get_string('expiredaction_help', 'enrol_sber'),
+                            ENROL_EXT_REMOVED_SUSPENDNOROLES,
+                            $options)
+                    );
 
-    //--- enrol instance defaults ----------------------------------------------------------------------------
+    // Enrol instance defaults ----------------------------------------------------------------------------
     $settings->add(new admin_setting_heading('enrol_sber_defaults',
         get_string('enrolinstancedefaults', 'admin'), get_string('enrolinstancedefaults_desc', 'admin')));
 
