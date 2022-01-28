@@ -39,7 +39,7 @@ require_login($course);
 
 $plugin = enrol_get_plugin('sber');
 
-// Security defined inside following function
+// Security defined inside following function.
 if (!$plugin->get_unenrolself_link($instance)) {
     redirect(new moodle_url('/course/view.php', array('id' => $course->id)));
 }

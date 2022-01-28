@@ -50,7 +50,12 @@ if ($data->errorCode == 0) {
         $DB->execute("update {enrol_sber} set payment_status=:payment_status where ordernumber=:order_number",
         ['payment_status' => $data->orderStatus, 'order_number' => $data->orderNumber]);
 
-        $plugin_instance = $DB->get_record("enrol", array("id" => $sberrec->instanceid, "enrol" => "sber", "status" => 0), "*", MUST_EXIST);
+        $plugin_instance = $DB->get_record("enrol",
+                            array("id" => $sberrec->instanceid,
+                                  "enrol" => "sber",
+                                  "status" => 0
+                             ), "*", MUST_EXIST);
+
         $plugin = enrol_get_plugin('sber');
 
         if ($plugin_instance->enrolperiod) {
@@ -62,7 +67,7 @@ if ($data->errorCode == 0) {
         }
 
         $userid = $sberrec->userid;
-        // Enrol user
+        // Enrol user.
         $plugin->enrol_user($plugin_instance, $userid, $plugin_instance->roleid, $timestart, $timeend);
 
         $context = context_course::instance($sberrec->courseid, MUST_EXIST);

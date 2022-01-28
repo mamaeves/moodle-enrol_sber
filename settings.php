@@ -27,11 +27,29 @@ defined('MOODLE_INTERNAL') || die();
 
 if ($ADMIN->fulltree) {
 
-    // Settings ------------------------------------------------------------------------------------------
+    // Settings.
     $settings->add(new admin_setting_heading('enrol_sber_settings', '', get_string('pluginname_desc', 'enrol_sber')));
 
-    $settings->add(new admin_setting_configtext('enrol_sber/username', get_string('username', 'enrol_sber'), '', '', PARAM_ALPHANUMEXT, 24));
-    $settings->add(new admin_setting_configtext('enrol_sber/password', get_string('password', 'enrol_sber'), '', '', PARAM_ALPHANUMEXT, 24));
+    $settings->add(
+        new admin_setting_configtext(
+            'enrol_sber/username',
+            get_string('username', 'enrol_sber'),
+            '',
+            '',
+            PARAM_ALPHANUMEXT,
+            24
+        )
+    );
+    $settings->add(
+        new admin_setting_configtext(
+            'enrol_sber/password',
+            get_string('password', 'enrol_sber'),
+            '',
+            '',
+            PARAM_ALPHANUMEXT,
+            24
+        )
+    );
 
     $settings->add(new admin_setting_configtext(
                 'enrol_sber/registerurl',
@@ -64,7 +82,7 @@ if ($ADMIN->fulltree) {
                             $options)
                     );
 
-    // Enrol instance defaults ----------------------------------------------------------------------------
+    // Enrol instance defaults.
     $settings->add(new admin_setting_heading('enrol_sber_defaults',
         get_string('enrolinstancedefaults', 'admin'), get_string('enrolinstancedefaults_desc', 'admin')));
 
@@ -76,7 +94,15 @@ if ($ADMIN->fulltree) {
     $settings->add(new admin_setting_configtext('enrol_sber/cost', get_string('cost', 'enrol_sber'), '', 0, PARAM_FLOAT, 4));
 
     $sbercurrencies = enrol_get_plugin('sber')->get_currencies();
-    $settings->add(new admin_setting_configselect('enrol_sber/currency', get_string('currency', 'enrol_sber'), '', 'RUB', $sbercurrencies));
+    $settings->add(
+        new admin_setting_configselect(
+            'enrol_sber/currency',
+            get_string('currency', 'enrol_sber'),
+            '',
+            'RUB',
+            $sbercurrencies
+        )
+    );
 
     if (!during_initial_install()) {
         $options = get_default_enrol_roles(context_system::instance());

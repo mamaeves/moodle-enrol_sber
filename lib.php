@@ -77,17 +77,17 @@ class enrol_sber_plugin extends enrol_plugin {
     }
 
     public function roles_protected() {
-        // Users with role assign cap may tweak the roles later
+        // Users with role assign cap may tweak the roles later.
         return false;
     }
 
     public function allow_unenrol(stdClass $instance) {
-        // Users with unenrol cap may unenrol other users manually - requires enrol/sber:unenrol
+        // Users with unenrol cap may unenrol other users manually - requires enrol/sber:unenrol.
         return true;
     }
 
     public function allow_manage(stdClass $instance) {
-        // Users with manage cap may tweak period and status - requires enrol/sber:manage
+        // Users with manage cap may tweak period and status - requires enrol/sber:manage.
         return true;
     }
 
@@ -107,7 +107,7 @@ class enrol_sber_plugin extends enrol_plugin {
             return false;
         }
 
-        // Multiple instances supported - different cost for different roles
+        // Multiple instances supported - different cost for different roles.
         return true;
     }
 
@@ -177,7 +177,7 @@ class enrol_sber_plugin extends enrol_plugin {
         $strloginto = get_string("loginto", "", $shortname);
         $strcourses = get_string("courses");
 
-        // Pass $view=true to filter hidden caps if the user cannot see them
+        // Pass $view=true to filter hidden caps if the user cannot see them.
         if ($users = get_users_by_capability($context, 'moodle/course:update', 'u.*', 'u.id ASC',
                                              '', '', '', '', false, true)) {
             $users = sort_by_roleassignment_authority($users, $context);
@@ -192,23 +192,20 @@ class enrol_sber_plugin extends enrol_plugin {
             $cost = $instance->cost;
         }
 
-        if (abs($cost) < 0.01) { // No cost, other enrolment methods (instances) should be used
+        if (abs($cost) < 0.01) { // No cost, other enrolment methods (instances) should be used.
             echo '<p>'.get_string('nocost', 'enrol_sber').'</p>';
         } else {
 
-            // Calculate localised and "." cost, make sure we send sber the same value,
-            // $cost=$cost*10;
-            // $localisedcost = format_float($cost, 2, true);
             $localisedcost = $cost;
 
-            if (isguestuser()) { // Force login only for guest user, not real users with guest role
+            if (isguestuser()) { // Force login only for guest user, not real users with guest role.
                 $wwwroot = $CFG->wwwroot;
                 echo '<div class="mdl-align"><p>'.get_string('paymentrequired').'</p>';
                 echo '<p><b>'.get_string('cost').": $instance->currency $localisedcost".'</b></p>';
                 echo '<p><a href="'.$wwwroot.'/login/">'.get_string('loginsite').'</a></p>';
                 echo '</div>';
             } else {
-                // Sanitise some fields before building the sber form
+                // Sanitise some fields before building the sber form.
                 $coursefullname  = format_string($course->fullname, true, array('context' => $context));
                 $courseshortname = $shortname;
                 $userfullname    = fullname($USER);

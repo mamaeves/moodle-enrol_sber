@@ -40,7 +40,8 @@ $registerUrl = get_config('enrol_sber', 'registerurl');
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $registerUrl);
 curl_setopt($ch, CURLOPT_POST, 1);
-curl_setopt($ch, CURLOPT_POSTFIELDS, "amount=".$amount."&orderNumber=".$orderNumber."&returnUrl=".$returnUrl."&userName=".$username."&password=".$password);
+curl_setopt($ch, CURLOPT_POSTFIELDS,
+        "amount=".$amount."&orderNumber=".$orderNumber."&returnUrl=".$returnUrl."&userName=".$username."&password=".$password);
 
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
@@ -61,7 +62,11 @@ if ($json = json_decode($response)) {
     $sberrec->ordernumber = $orderNumber;
     $sberrec->timeupdated = time();
 
-    if (!$DB->record_exists('enrol_sber', ['courseid' => $instance->courseid, 'userid' => $USER->id, 'instanceid' => $instance->id, 'ordernumber' => $orderNumber])) {
+    if (!$DB->record_exists('enrol_sber',
+        ['courseid' => $instance->courseid,
+            'userid' => $USER->id,
+            'instanceid' => $instance->id,
+            'ordernumber' => $orderNumber])) {
         $DB->insert_record('enrol_sber', $sberrec);
     }
 

@@ -48,7 +48,7 @@ $fullname = format_string($course->fullname, true, array('context' => $context))
 if (is_enrolled($context, null, '', true)) {
     redirect($destination, get_string('paymentthanks', '', $fullname));
 
-} else {   // Somehow they aren't enrolled yet!  :-(
+} else {   // Somehow they aren't enrolled yet.
     $PAGE->set_url($destination);
     echo $OUTPUT->header();
     $a = new stdClass();
