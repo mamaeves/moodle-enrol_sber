@@ -20,7 +20,7 @@
  * This plugin allows you to set up paid courses.
  *
  * @package    enrol_sber
- * @copyright  2021 Eugene Mamaev
+ * @copyright  2022 Eugene Mamaev {mamaeves@mail.ru}
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -208,11 +208,7 @@ class enrol_sber_plugin extends enrol_plugin {
                 // Sanitise some fields before building the sber form.
                 $coursefullname  = format_string($course->fullname, true, array('context' => $context));
                 $courseshortname = $shortname;
-                $userfullname    = fullname($USER);
-                $userfirstname   = $USER->firstname;
-                $userlastname    = $USER->lastname;
-                $useraddress     = $USER->address;
-                $usercity        = $USER->city;
+
                 $instancename    = $this->get_instance_name($instance);
                 $instanceid      = $instance->id;
 

@@ -15,15 +15,26 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Paypal enrolment plugin version specification.
+ * sber enrolment plugin
  *
  * @package    enrol_sber
- * @copyright  2022 Eugene Mamaev
+ * @copyright  2022 Eugene Mamaev  {mamaeves@mail.ru}
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined('MOODLE_INTERNAL') || die();
+namespace enrol_sber\privacy;
 
-$plugin->version   = 2022011503;        // The current plugin version (Date: YYYYMMDDXX).
-$plugin->requires  = 2018051700;        // Requires this Moodle version.
-$plugin->component = 'enrol_sber';    // Full name of the plugin (used for diagnostics).
+class provider implements
+// This plugin does not store any personal user data.
+\core_privacy\local\metadata\null_provider {
+
+    /**
+     * Get the language string identifier with the component's language
+     * file to explain why this plugin stores no data.
+     *
+     * @return  string
+     */
+    public static function get_reason() : string {
+        return 'privacy:metadata';
+    }
+}

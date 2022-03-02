@@ -18,8 +18,7 @@
  * sber enrolments plugin settings and presets.
  *
  * @package    enrol_sber
- * @copyright  2021 Eugene Mamaev
- * @author     Eugene Mamaev - based on code by Petr Skoda and others
+ * @copyright  2021 Eugene Mamaev {mamaeves@mail.ru}
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 

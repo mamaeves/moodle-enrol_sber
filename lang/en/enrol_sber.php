@@ -18,7 +18,7 @@
  * Strings for component 'enrol_sber', language 'en'.
  *
  * @package    enrol_sber
- * @copyright  2022 Eugene Mamaev
+ * @copyright  2022 Eugene Mamaev {mamaeves@mail.ru}
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -38,11 +38,11 @@ $string['unenrolselfconfirm'] = 'Do you really want to unenrol yourself from cou
 
 $string['mailadmins'] = 'Notify admin';
 $string['mailstudents'] = 'Notify students';
-$string['mailteachers'] = 'Notify teachers';$string['expiredaction'] = 'Enrolment expiry action';
-$string['expiredaction_help'] = 'Select action to carry out when user enrolment expires. Please note that some user data and settings are purged from course during course unenrolment.';
+$string['mailteachers'] = 'Notify teachers';
 
 $string['expiredaction'] = 'Enrolment expiry action';
 $string['expiredaction_help'] = 'Select action to carry out when user enrolment expires. Please note that some user data and settings are purged from course during course unenrolment.';
+
 $string['cost'] = 'Enrol cost';
 $string['currency'] = 'Currency';
 $string['defaultrole'] = 'Default role assignment';
@@ -59,3 +59,5 @@ $string['username'] = 'Username';
 $string['password'] = 'Password';
 $string['registerurl'] = 'Register URL';
 $string['orders'] = 'Orders';
+
+$string['privacy:metadata'] = 'The Enrol Sberbank does not store any personal user data.';

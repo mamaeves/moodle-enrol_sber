@@ -15,14 +15,16 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * sber enrolment plugin - support for user self unenrolment.
+ * sber enrolment plugin
  *
  * @package    enrol_sber
- * @copyright  2022 Eugene Mamaev  {mamaeves@mail.ru}
+ * @copyright  2022 Eugene Mamaev {mamaeves@mail.ru}
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 require("../../config.php");
+
+require_login();
 
 $context = CONTEXT_SYSTEM::instance();
 

@@ -22,6 +22,9 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 require_once('../../config.php');
+require_once($CFG->libdir . '/filelib.php');
+
+require_login();
 
 $instanceid = required_param('instanceid', PARAM_INT);
 
@@ -37,16 +40,17 @@ $password = get_config('enrol_sber', 'password');
 
 $registerUrl = get_config('enrol_sber', 'registerurl');
 
-$ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, $registerUrl);
-curl_setopt($ch, CURLOPT_POST, 1);
-curl_setopt($ch, CURLOPT_POSTFIELDS,
-        "amount=".$amount."&orderNumber=".$orderNumber."&returnUrl=".$returnUrl."&userName=".$username."&password=".$password);
+$c = new curl();
 
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+$postfields = "amount=".$amount."&orderNumber=".$orderNumber."&returnUrl=".$returnUrl."&userName=".$username."&password=".$password;
 
-$response = curl_exec($ch);
-curl_close ($ch);
+$options = array(
+        'returntransfer' => true,
+        'timeout' => 30,
+        'CURLOPT_HTTP_VERSION' => CURL_HTTP_VERSION_1_1,
+);
+
+$response = $c->post($registerUrl, $postfields, $options);
 
 if ($json = json_decode($response)) {
 

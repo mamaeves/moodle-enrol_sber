@@ -18,8 +18,7 @@
  * This file keeps track of upgrades to the sber enrolment plugin
  *
  * @package    enrol_sber
- * @copyright  2021 Eugene Mamaev
- * @author     Eugene Venter
+ * @copyright  2022 Eugene Mamaev {mamaeves@mail.ru}
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 

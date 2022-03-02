@@ -18,23 +18,22 @@
  * Strings for component 'enrol_sber', language 'en'.
  *
  * @package    enrol_sber
- * @copyright  2022 Eugene Mamaev
+ * @copyright  2022 Eugene Mamaev {mamaeves@mail.ru}
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-
-$string['sber:config'] = 'Configure sber enrol instances';
-$string['sber:manage'] = 'Manage enrolled users';
-$string['sber:unenrol'] = 'Unenrol users from course';
-$string['sber:unenrolself'] = 'Unenrol self from the course';
+$string['sber:config'] = 'Настраивать оплату через Сбер';
+$string['sber:manage'] = 'Управлять записанными пользователями';
+$string['sber:unenrol'] = 'Отчислять пользователей с курса';
+$string['sber:unenrolself'] = 'Отчислять самого себя с курса';
 $string['sberaccepted'] = 'Принимается оплата через Сбер';
 $string['pluginname'] = 'Сбер';
-$string['pluginname_desc'] = 'The sber module allows you to set up paid courses.  If the cost for any course is zero, then students are not asked to pay for entry.  There is a site-wide cost that you set here as a default for the whole site and then a course setting that you can set for each course individually. The course cost overrides the site cost.';
+$string['pluginname_desc'] = 'Позволяет настроить запись на курса через оплату через Сбербанк. Если стоимость курса 0, то оплата не берется.';
 $string['sendpaymentbutton'] = 'Оплатить через Сбер';
 $string['status'] = 'Разрешить оплату через Сбер';
-$string['status_desc'] = 'Allow users to use sber to enrol into a course by default.';
-$string['transactions'] = 'sber transactions';
-$string['unenrolselfconfirm'] = 'Do you really want to unenrol yourself from course "{$a}"?';
+$string['status_desc'] = 'Разрешить пользователям использовать оплату через Сбер для записи на курс по умолчанию.';
+$string['transactions'] = 'Транзакции через Сбер';
+$string['unenrolselfconfirm'] = 'Вы действительно хотите отчислиться из курса "{$a}"?';
 
 $string['mailadmins'] = 'Уведомить админа';
 $string['mailstudents'] = 'Уведомить студентов';
@@ -42,6 +41,7 @@ $string['mailteachers'] = 'Уведомить учителей';
 
 $string['expiredaction'] = 'Действие при истечении срока зачисления';
 $string['expiredaction_help'] = 'Выберите действие, которое выполниться при истечении срока зачисления на курс.';
+
 $string['cost'] = 'Стоимость';
 $string['currency'] = 'Валюта';
 $string['defaultrole'] = 'Роль по умолчанию';
@@ -58,3 +58,5 @@ $string['username'] = 'Логин';
 $string['password'] = 'Пароль';
 $string['registerurl'] = 'URL регистрации заказа';
 $string['orders'] = 'Заказы';
+
+$string['privacy:metadata'] = 'Плагин не хранит персональных данных пользователей';
