@@ -24,6 +24,7 @@
 
 require_once('../../config.php');
 require_once($CFG->libdir.'/enrollib.php');
+require_once($CFG->libdir . '/filelib.php');
 
 $orderid = required_param('orderId', PARAM_ALPHANUMEXT);
 
@@ -32,15 +33,17 @@ $sberrec = $DB->get_record('enrol_sber', ['orderid' => $orderid]);
 $username = get_config('enrol_sber', 'username');
 $password = get_config('enrol_sber', 'password');
 
-$ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, "https://3dsec.sberbank.ru/payment/rest/getOrderStatusExtended.do");
-curl_setopt($ch, CURLOPT_POST, 1);
-curl_setopt($ch, CURLOPT_POSTFIELDS, "orderId=".$orderid."&userName=".$username."&password=".$password);
+$c = new curl();
 
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+$postfields = "orderId=".$orderid."&userName=".$username."&password=".$password;
 
-$response = curl_exec($ch);
-curl_close ($ch);
+$options = array(
+        'returntransfer' => true,
+        'timeout' => 30,
+        'CURLOPT_HTTP_VERSION' => CURL_HTTP_VERSION_1_1,
+);
+
+$response = $c->post("https://3dsec.sberbank.ru/payment/rest/getOrderStatusExtended.do", $postfields, $options);
 
 $data = json_decode($response);
 
