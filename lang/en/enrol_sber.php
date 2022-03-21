@@ -60,4 +60,15 @@ $string['password'] = 'Password';
 $string['registerurl'] = 'Register URL';
 $string['orders'] = 'Orders';
 
-$string['privacy:metadata'] = 'The Enrol Sberbank does not store any personal user data.';
+$string['privacy:metadata:enrol_sber:enrol_sber'] = 'Information about the Sber transactions for Sber enrolments.';
+$string['privacy:metadata:enrol_sber:enrol_sber:courseid'] = 'The ID of the course that is sold.';
+$string['privacy:metadata:enrol_sber:enrol_sber:instanceid'] = 'The ID of the enrolment instance in the course.';
+$string['privacy:metadata:enrol_sber:enrol_sber:item_name'] = 'The full name of the course that its enrolment has been sold.';
+$string['privacy:metadata:enrol_sber:enrol_sber:memo'] = 'A note field.';
+$string['privacy:metadata:enrol_sber:enrol_sber:payment_status'] = 'The status of the payment.';
+$string['privacy:metadata:enrol_sber:enrol_sber:timeupdated'] = 'The time of Moodle being notified by Sber about the payment.';
+$string['privacy:metadata:enrol_sber:enrol_sber:userid'] = 'The ID of the user who bought the course enrolment.';
+$string['privacy:metadata:enrol_sber:sber_ru'] = 'The Sber enrolment plugin transmits user data from Moodle to the Sber website.';
+$string['privacy:metadata:enrol_sber:sber_ru:email'] = 'Email address of the user who is buying the course.';
+$string['privacy:metadata:enrol_sber:sber_ru:first_name'] = 'First name of the user who is buying the course.';
+$string['privacy:metadata:enrol_sber:sber_ru:last_name'] = 'Last name of the user who is buying the course.';

@@ -59,4 +59,15 @@ $string['password'] = 'Пароль';
 $string['registerurl'] = 'URL регистрации заказа';
 $string['orders'] = 'Заказы';
 
-$string['privacy:metadata'] = 'Плагин не хранит персональных данных пользователей';
+$string['privacy:metadata:enrol_sber:enrol_sber'] = 'Информация о транзакциях через Сбер.';
+$string['privacy:metadata:enrol_sber:enrol_sber:courseid'] = 'ID курса, который продается.';
+$string['privacy:metadata:enrol_sber:enrol_sber:instanceid'] = 'ID экземпляра записи на курс.';
+$string['privacy:metadata:enrol_sber:enrol_sber:item_name'] = 'Полное название курса, который продается.';
+$string['privacy:metadata:enrol_sber:enrol_sber:memo'] = 'Примечание.';
+$string['privacy:metadata:enrol_sber:enrol_sber:payment_status'] = 'Статус платежа.';
+$string['privacy:metadata:enrol_sber:enrol_sber:timeupdated'] = 'Время, когда Moodle получил от Сбера уведомление о платеже.';
+$string['privacy:metadata:enrol_sber:enrol_sber:userid'] = 'ID пользователя, который купил доступ к курсу.';
+$string['privacy:metadata:enrol_sber:sber_ru'] = 'Плагин записи через Сбер передает данные пользователя Moodle на вебсайт Сбера.';
+$string['privacy:metadata:enrol_sber:sber_ru:email'] = 'Email пользователя, который покупает курс.';
+$string['privacy:metadata:enrol_sber:sber_ru:first_name'] = 'Имя пользователя, который покупает курс.';
+$string['privacy:metadata:enrol_sber:sber_ru:last_name'] = 'Фамилия пользователя, который покупает курс.';
