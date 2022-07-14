@@ -45,7 +45,7 @@ if ($ADMIN->fulltree) {
             get_string('password', 'enrol_sber'),
             '',
             '',
-            PARAM_ALPHANUMEXT,
+            PARAM_TEXT,
             24
         )
     );
